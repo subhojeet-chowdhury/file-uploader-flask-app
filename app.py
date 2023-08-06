@@ -23,6 +23,9 @@ def upload():
     s3_key = f"uploads/{file.filename}"
     s3_client.upload_fileobj(file, aws_credentials.S3_BUCKET_NAME, s3_key)
 
+    # save file name to dynamodb for billing purpose
+    saveFilenameToDynamodb(file.filename)
+
     # Generate the download link
     downloadLink = f"https://{aws_credentials.S3_BUCKET_NAME}.s3.{aws_credentials.AWS_REGION}.amazonaws.com/{s3_key}"
 
@@ -30,6 +33,18 @@ def upload():
     sendEmail(recipientEmails, downloadLink)
 
     return render_template('success.html')
+
+def saveFilenameToDynamodb(filename):
+    dynamodb_client = boto3.client('dynamodb', aws_access_key_id=aws_credentials.AWS_ACCESS_KEY_ID,
+                             aws_secret_access_key=aws_credentials.AWS_SECRET_ACCESS_KEY, region_name=aws_credentials.AWS_REGION)
+    response = dynamodb_client.put_item(
+        TableName=aws_credentials.DYNAMODB_TABLE_NAME,
+        Item={
+            'fileName': {'S': filename}
+        }
+    )
+    print("Filename saved to DynamoDB:", response)
+
 
 
 def sendEmail(recipientEmails, downloadLink):
