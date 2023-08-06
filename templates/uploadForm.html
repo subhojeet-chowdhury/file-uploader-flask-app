@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Beautiful Form with Email and File Inputs</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .form-container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-container label,
+      .form-container input,
+      .form-container button {
+        width: 90%;
+        margin-bottom: 20px;
+      }
+
+      .form-container input[type="text"],
+      .form-container input[type="file"] {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .form-container button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <form id="myForm" method="post" action="/upload" enctype="multipart/form-data">
+        <label for="fileInput">Upload a file:</label>
+        <input type="file" id="fileInput" name="fileInput" />
+
+        <label for="emails">Enter up to 5 emails (separated by commas):</label>
+        <input
+          type="text"
+          id="emails"
+          name="emails"
+          placeholder="e.g., john@example.com, jane@example.com"
+        />
+        <button type="submit">Upload and send link</button>
+      </form>
+    </div>
+  </body>
+</html>
