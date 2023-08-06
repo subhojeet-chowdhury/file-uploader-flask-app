@@ -1,7 +1,5 @@
 # Web-based File Uploading App
 
-![App Screenshot](screenshot.png)
-
 Welcome to the **Web-based File Uploading App**! This application allows you to seamlessly upload files to an **Amazon Simple Storage Service (S3)** bucket and conveniently share the download link via email using **Amazon Simple Email Service (SES)**. The app is built with **Flask**, powered by the **boto3** library for AWS integration, and deployed on an **Amazon Elastic Compute Cloud (EC2)** instance.
 
 ## Features
@@ -30,14 +28,17 @@ To run the app locally on your computer, follow these steps:
    git clone <my-repo-link>
    cd file-uploader
    pip install flask boto3
+   ```
 
  
 3. Set up your AWS credentials and configure Amazon S3 and Amazon SES in the aws_credentials.py
 
   ```bash
   python app.py
+   ```
 
 4. Access the app through your web browser at http://localhost:5000/
 
 ## Acknowledgements
+
 This app is made possible by the remarkable services and tools provided by Amazon Web Services.
